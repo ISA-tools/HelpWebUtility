@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.isatools</groupId>
+    <artifactId>HelpWebUtility</artifactId>
+    <version>1.0</version>
+    <description>
+        The web browser in this package was developed as part of a university project conducted in 2005. It
+        has pretty basic functionalities, but is also quite flexible, and for in-app browsing, like that done in
+        IntelliJ for instance, in order to navigate to help pages, it is perfect. I don't need any special JNI calls to
+        invoke browsers therefore I don't introduce platform-dependent code into the codebase.
+    </description>
+
+    <developers>
+        <developer>
+            <id>maguire</id>
+            <name>Eamonn Maguire</name>
+            <email>eamonnmag@gmail.com</email>
+            <organization>ISA tools team</organization>
+            <organizationUrl>http://isa-tools.org</organizationUrl>
+        </developer>
+    </developers>
+
+    <scm>
+        <url>http://www.github.com/eamonnmag</url>
+    </scm>
+
+
+    <repositories>
+
+        <repository>
+            <id>oerc</id>
+            <url>http://frog.oerc.ox.ac.uk:8080/artifactory/repo/</url>
+        </repository>
+
+    </repositories>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>net.java.dev.fuse</groupId>
+            <artifactId>fuse-swing</artifactId>
+            <version>0.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.14</version>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.2</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.explodingpixels</groupId>
+            <artifactId>scroller</artifactId>
+            <version>0.1</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>1.5</source>
+                    <target>1.5</target>
+                    <executable>apt</executable>
+                    <fork>true</fork>
+                    <debug>true</debug>
+                    <compilerArguments>
+                        <s>${project.build.directory}</s>
+                    </compilerArguments>
+                    <meminitial>128m</meminitial>
+                    <maxmem>512m</maxmem>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.2-beta-5</version>
+                <configuration>
+                    <archiverConfig>
+                        <duplicateBehavior>skip</duplicateBehavior>
+                    </archiverConfig>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>attached</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <distributionManagement>
+        <repository>
+            <id>oerc-repo</id>
+            <name>OeRC Maven repository</name>
+            <url>http://frog.oerc.ox.ac.uk:8080/artifactory/libs-release-local/</url>
+        </repository>
+    </distributionManagement>
+
+</project>
