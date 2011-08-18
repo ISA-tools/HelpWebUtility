@@ -75,7 +75,7 @@ public class WebBrowser extends AnimatableJFrame {
         JPanel topPanel = new JPanel(new BorderLayout());
 
 
-        TopPane titlePanel = new TopPane(true);
+        TopPane titlePanel = new TopPane(false);
         topPanel.add(titlePanel, BorderLayout.NORTH);
 
 
@@ -340,7 +340,7 @@ public class WebBrowser extends AnimatableJFrame {
     }
 
     public static void main(String[] args) {
-        new WebBrowser("http://www.nufc.com").createGUI();
+        new WebBrowser("http://isatab.sourceforge.net/helpindex.html").createGUI();
     }
 
 }
